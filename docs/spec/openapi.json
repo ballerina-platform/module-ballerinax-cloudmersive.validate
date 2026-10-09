@@ -1,0 +1,4526 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "validateapi",
+    "description": "The validation APIs help you validate data. Check if an E-mail address is real. Check if a domain is real. Check up on an IP address, and even where it is located. All this and much more is available in the validation API."
+  },
+  "host": "api.cloudmersive.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/validate/address/parse": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Parse an unstructured input text string into an international, formatted address",
+        "description": "Uses machine learning and Natural Language Processing (NLP) to handle a wide array of cases, including non-standard and unstructured address strings across a wide array of countries and address formatting norms.",
+        "operationId": "Address_ParseString",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input parse request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ParseAddressRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ParseAddressResponse"
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/street-address": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Validate a street address",
+        "description": "Determines if an input structured street address is valid or invalid.  If the address is valid, also returns the latitude and longitude of the address.  Supports all major international addresses.",
+        "operationId": "Address_ValidateAddress",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input parse request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateAddressRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateAddressResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/street-address/normalize": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Normalize a street address",
+        "description": "Normalizes an input structured street address is valid or invalid.  If the address is valid, also returns the latitude and longitude of the address.  Supports all major international addresses.",
+        "operationId": "Address_NormalizeAddress",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input parse request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateAddressRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NormalizeAddressResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/city": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Validate a City and State/Province combination, get location information about it",
+        "description": "Checks if the input city and state name or code is valid, and returns information about it such as normalized City name, State name and more.  Supports all major international addresses.",
+        "operationId": "Address_ValidateCity",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input parse request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateCityRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateCityResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/state": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Validate a state or province, name or abbreviation, get location information about it",
+        "description": "Checks if the input state name or code is valid, and returns information about it such as normalized State name and more.  Supports all major countries.",
+        "operationId": "Address_ValidateState",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input parse request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateStateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateStateResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/postal-code": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Validate a postal code, get location information about it",
+        "description": "Checks if the input postal code is valid, and returns information about it such as City, State and more.  Supports all major countries.",
+        "operationId": "Address_ValidatePostalCode",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input parse request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidatePostalCodeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidatePostalCodeResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/country": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Validate and normalize country information, return ISO 3166-1 country codes and country name",
+        "description": "Validates and normalizes country information, and returns key information about a country, as well as whether it is a member of the European Union.  Also returns distinct time zones in the country.",
+        "operationId": "Address_Country",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateCountryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateCountryResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/country/list": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Get a list of ISO 3166-1 countries",
+        "description": "Enumerates the list of ISO 3166-1 countries, including name, country codes, and more.",
+        "operationId": "Address_CountryList",
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CountryListResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/country/check-eu-membership": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Check if a country is a member of the European Union (EU)",
+        "description": "Checks if the input country is a member of the European Union or not.",
+        "operationId": "Address_CheckEUMembership",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateCountryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateCountryResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/country/get-currency": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Get the currency of the input country",
+        "description": "Gets the currency information for the input country, including the ISO three-letter country code, currency symbol, and English currency name.",
+        "operationId": "Address_GetCountryCurrency",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateCountryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateCountryResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/country/get-region": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Get the region, subregion and continent of the country",
+        "description": "Gets the continent information including region and subregion for the input country.",
+        "operationId": "Address_GetCountryRegion",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateCountryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateCountryResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/country/get-timezones": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Gets IANA/Olsen time zones for a country",
+        "description": "Gets the IANA/Olsen time zones for a country.",
+        "operationId": "Address_GetTimezone",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetTimezonesRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GetTimezonesResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/geocode": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Geocode a street address into latitude and longitude",
+        "description": "Geocodes a street address into latitude and longitude.",
+        "operationId": "Address_Geocode",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input parse request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateAddressRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateAddressResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/address/geocode/reverse": {
+      "post": {
+        "tags": [
+          "Address"
+        ],
+        "summary": "Reverse geocode a lattitude and longitude into an address",
+        "description": "Converts lattitude and longitude coordinates into an address through reverse-geocoding.",
+        "operationId": "Address_ReverseGeocodeAddress",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input reverse geocoding request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReverseGeocodeAddressRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ReverseGeocodeAddressResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/date-time/get/now": {
+      "get": {
+        "tags": [
+          "DateTime"
+        ],
+        "summary": "Get current date and time as of now",
+        "description": "Gets the current date and time.  Response time is syncronized with atomic clocks, and represents a monotonic, centrally available, consistent clock.",
+        "operationId": "DateTime_GetNowSimple",
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DateTimeNowResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/date-time/get/holidays": {
+      "post": {
+        "tags": [
+          "DateTime"
+        ],
+        "summary": "Get public holidays in the specified country and year",
+        "description": "Enumerates all public holidays in a given country for a given year.  Supports over 100 countries.",
+        "operationId": "DateTime_GetPublicHolidays",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetPublicHolidaysRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PublicHolidaysResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/date-time/parse/date-time/structured": {
+      "post": {
+        "tags": [
+          "DateTime"
+        ],
+        "summary": "Parses a standardized date and time string into a date and time",
+        "description": "Parses a structured date and time string into a date time object.  This is intended for standardized date strings that adhere to formatting conventions, rather than natural language input.",
+        "operationId": "DateTime_ParseStandardDateTime",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DateTimeStandardizedParseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DateTimeStandardizedParseResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/date-time/parse/date-time/natural-language": {
+      "post": {
+        "tags": [
+          "DateTime"
+        ],
+        "summary": "Parses a free-form natural language date and time string into a date and time",
+        "description": "Parses an unstructured, free-form, natural language date and time string into a date time object.  This is intended for lightweight human-entered input, such as \"tomorrow at 3pm\" or \"tuesday\".",
+        "operationId": "DateTime_ParseNaturalLanguageDateTime",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DateTimeNaturalLanguageParseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DateTimeStandardizedParseResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/domain/check": {
+      "post": {
+        "tags": [
+          "Domain"
+        ],
+        "summary": "Validate a domain name",
+        "description": "Check whether a domain name is valid or not.  API performs a live validation by contacting DNS services to validate the existence of the domain name.",
+        "operationId": "Domain_Check",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "body",
+            "description": "Domain name to check, for example \"cloudmersive.com\".  The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CheckResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/domain/quality-score": {
+      "post": {
+        "tags": [
+          "Domain"
+        ],
+        "summary": "Validate a domain name's quality score",
+        "description": "Check the quality of a domain name.  Supports over 9 million domain names.  Higher quality scores indicate more trust and authority in the domain name, with values ranging from 0.0 (low quality) to 10.0 (maximum quality).",
+        "operationId": "Domain_QualityScore",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "body",
+            "description": "Domain name to check, for example \"cloudmersive.com\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DomainQualityResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/domain/whois": {
+      "post": {
+        "tags": [
+          "Domain"
+        ],
+        "summary": "Get WHOIS information for a domain",
+        "description": "Validate whether a domain name exists, and also return the full WHOIS record for that domain name.  WHOIS records include all the registration details of the domain name, such as information about the domain's owners.",
+        "operationId": "Domain_Post",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "body",
+            "description": "Domain name to check, for example \"cloudmersive.com\".   The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WhoisResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/domain/url/syntax-only": {
+      "post": {
+        "tags": [
+          "Domain"
+        ],
+        "summary": "Validate a URL syntactically",
+        "description": "Validate whether a URL is syntactically valid (does not check endpoint for validity).  Accepts various types of input and produces a well-formed URL as output.",
+        "operationId": "Domain_UrlSyntaxOnly",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "Input URL information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateUrlRequestSyntaxOnly"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateUrlResponseSyntaxOnly"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/domain/url/full": {
+      "post": {
+        "tags": [
+          "Domain"
+        ],
+        "summary": "Validate a URL fully",
+        "description": "Validate whether a URL is syntactically valid (does not check endpoint for validity), whether it exists, and whether the endpoint is up and passes virus scan checks.  Accepts various types of input and produces a well-formed URL as output.",
+        "operationId": "Domain_UrlFull",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "Input URL request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateUrlRequestFull"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateUrlResponseFull"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/domain/url/get-top-level-domain": {
+      "post": {
+        "tags": [
+          "Domain"
+        ],
+        "summary": "Get top-level domain name from URL",
+        "description": "Gets the top-level domain name from a URL, such as mydomain.com.",
+        "operationId": "Domain_GetTopLevelDomainFromUrl",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "Input URL information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateUrlRequestSyntaxOnly"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateUrlResponseSyntaxOnly"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/domain/url/phishing-threat-check": {
+      "post": {
+        "tags": [
+          "Domain"
+        ],
+        "summary": "Check a URL for Phishing threats",
+        "description": "Checks if an input URL is at risk of being an Phishing (fake login page, or other page designed to collect information via social engineering) threat or attack.",
+        "operationId": "Domain_PhishingCheck",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "Input URL request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PhishingCheckRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PhishingCheckResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/domain/url/is-admin-path": {
+      "post": {
+        "tags": [
+          "Domain"
+        ],
+        "summary": "Check if path is a high-risk or vulnerable server administration path",
+        "description": "Check if the input URL or relative path is a server Administration Path, and therefore a risk or vulnerability for remote access.",
+        "operationId": "Domain_IsAdminPath",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "URL or relative path to check, e.g. \"/admin/login\".  The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/IsAdminPathResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/domain/url/safety-threat-check": {
+      "post": {
+        "tags": [
+          "Domain"
+        ],
+        "summary": "Check a URL for safety threats",
+        "description": "Checks if an input URL is at risk of being a safety threat through malware, unwanted software, or social engineering threats.",
+        "operationId": "Domain_SafetyCheck",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "Input URL request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UrlSafetyCheckRequestFull"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UrlSafetyCheckResponseFull"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/domain/url/ssrf-threat-check": {
+      "post": {
+        "tags": [
+          "Domain"
+        ],
+        "summary": "Check a URL for SSRF threats",
+        "description": "Checks if an input URL is at risk of being an SSRF (Server-side request forgery) threat or attack.",
+        "operationId": "Domain_SsrfCheck",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "Input URL request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UrlSsrfRequestFull"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UrlSsrfResponseFull"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/domain/url/ssrf-threat-check/batch": {
+      "post": {
+        "tags": [
+          "Domain"
+        ],
+        "summary": "Check a URL for SSRF threats in batches",
+        "description": "Batch-checks if input URLs are at risk of being an SSRF (Server-side request forgery) threat or attack.",
+        "operationId": "Domain_SsrfCheckBatch",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "Input URL request as a batch of multiple URLs",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UrlSsrfRequestBatch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UrlSsrfResponseBatch"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/domain/url/ssrf-threat-check/html-embedded": {
+      "post": {
+        "tags": [
+          "Domain"
+        ],
+        "summary": "Check a URL for HTML embedded SSRF threats",
+        "description": "Checks if an input URL HTML is at risk of containing one or more embedded SSRF (Server-side request forgery) threats or attacks.",
+        "operationId": "Domain_UrlHtmlSsrfCheck",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "Input URL request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UrlHtmlSsrfRequestFull"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UrlHtmlSsrfResponseFull"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/email/address/syntaxOnly": {
+      "post": {
+        "tags": [
+          "Email"
+        ],
+        "summary": "Validate email adddress for syntactic correctness only",
+        "description": "Validate whether a given email address is syntactically correct via a limited local-only check.  Use the address/full API to do a full validation.",
+        "operationId": "Email_Post",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "Email address to validate, e.g. \"support@cloudmersive.com\".    The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AddressVerifySyntaxOnlyResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/email/address/servers": {
+      "post": {
+        "tags": [
+          "Email"
+        ],
+        "summary": "Partially check whether an email address is valid",
+        "description": "Validate an email address by identifying whether its parent domain has email servers defined.  This call is less limited than syntaxOnly but not as comprehensive as address/full.",
+        "operationId": "Email_AddressGetServers",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "description": "Email address to validate, e.g. \"support@cloudmersive.com\".    The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AddressGetServersResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/email/address/full": {
+      "post": {
+        "tags": [
+          "Email"
+        ],
+        "summary": "Fully validate an email address",
+        "description": "Performs a full validation of the email address.  Checks for syntactic correctness, identifies the mail server in question if any, and then contacts the email server to validate the existence of the account - without sending any emails.",
+        "operationId": "Email_FullValidation",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "description": "Email address to validate, e.g. \"support@cloudmersive.com\".    The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/FullEmailValidationResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/ip/intelligence": {
+      "post": {
+        "tags": [
+          "IPAddress"
+        ],
+        "summary": "Get intelligence on an IP address",
+        "description": "Identify key intelligence about an IP address, including if it is a known threat IP, known bot, Tor exit node, as well as the location of the IP address.",
+        "operationId": "IPAddress_IpIntelligence",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "IP address to process, e.g. \"55.55.55.55\".  The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/IPIntelligenceResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/ip/geolocate": {
+      "post": {
+        "tags": [
+          "IPAddress"
+        ],
+        "summary": "Geolocate an IP address",
+        "description": "Identify an IP address Country, State/Provence, City, Zip/Postal Code, etc.  Useful for security and UX applications.",
+        "operationId": "IPAddress_Post",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "IP address to geolocate, e.g. \"55.55.55.55\".  The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GeolocateResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/ip/geolocate/street-address": {
+      "post": {
+        "tags": [
+          "IPAddress"
+        ],
+        "summary": "Geolocate an IP address to a street address",
+        "description": "Identify an IP address's street address.  Useful for security and UX applications.",
+        "operationId": "IPAddress_GeolocateStreetAddress",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "IP address to geolocate, e.g. \"55.55.55.55\".  The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GeolocateStreetAddressResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/ip/is-threat": {
+      "post": {
+        "tags": [
+          "IPAddress"
+        ],
+        "summary": "Check if IP address is a known threat",
+        "description": "Check if the input IP address is a known threat IP address.  Checks against known bad IPs, botnets, compromised servers, and other lists of threats.",
+        "operationId": "IPAddress_IsThreat",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "IP address to check, e.g. \"55.55.55.55\".  The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/IPThreatResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/ip/is-tor-node": {
+      "post": {
+        "tags": [
+          "IPAddress"
+        ],
+        "summary": "Check if IP address is a Tor node server",
+        "description": "Check if the input IP address is a Tor exit node server.  Tor servers are a type of privacy-preserving technology that can hide the original IP address who makes a request.",
+        "operationId": "IPAddress_IsTorNode",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "IP address to check, e.g. \"55.55.55.55\".  The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TorNodeResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/ip/is-bot": {
+      "post": {
+        "tags": [
+          "IPAddress"
+        ],
+        "summary": "Check if IP address is a Bot client",
+        "description": "Check if the input IP address is a Bot, robot, or otherwise a non-user entity.  Leverages real-time signals to check against known high-probability bots..",
+        "operationId": "IPAddress_IsBot",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "IP address to check, e.g. \"55.55.55.55\".  The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BotCheckResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/ip/reverse-domain-lookup": {
+      "post": {
+        "tags": [
+          "IPAddress"
+        ],
+        "summary": "Perform a reverse domain name (DNS) lookup on an IP address",
+        "description": "Gets the domain name, if any, associated with the IP address.",
+        "operationId": "IPAddress_ReverseDomainLookup",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "IP address to check, e.g. \"55.55.55.55\".  The input is a string so be sure to enclose it in double-quotes.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/IPReverseDNSLookupResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/lead-enrichment/lead/enrich": {
+      "post": {
+        "tags": [
+          "LeadEnrichment"
+        ],
+        "summary": "Enrich an input lead with additional fields of data",
+        "operationId": "LeadEnrichment_EnrichLead",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "Input lead with known fields set, and unknown fields left blank (null)",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LeadEnrichmentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LeadEnrichmentResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/lead-enrichment/lead/email/company-information": {
+      "post": {
+        "tags": [
+          "LeadEnrichment"
+        ],
+        "summary": "Get company information from email address",
+        "operationId": "LeadEnrichment_GetCompanyInformation",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "Input email address lead",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmailLead"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LeadEnrichmentResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/name/full-name": {
+      "post": {
+        "tags": [
+          "Name"
+        ],
+        "summary": "Parse and validate a full name",
+        "description": "Parses a full name string (e.g. \"Mr. Jon van der Waal Jr.\") into its component parts (and returns these component parts), and then validates whether it is a valid name string or not",
+        "operationId": "Name_ValidateFullName",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Validation request information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FullNameValidationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/FullNameValidationResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/name/first": {
+      "post": {
+        "tags": [
+          "Name"
+        ],
+        "summary": "Validate a first name",
+        "description": "Determines if a string is a valid first name (given name)",
+        "operationId": "Name_ValidateFirstName",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Validation request information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FirstNameValidationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/FirstNameValidationResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/name/last": {
+      "post": {
+        "tags": [
+          "Name"
+        ],
+        "summary": "Validate a last name",
+        "description": "Determines if a string is a valid last name (surname)",
+        "operationId": "Name_ValidateLastName",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Validation request information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LastNameValidationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LastNameValidationResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/name/get-gender": {
+      "post": {
+        "tags": [
+          "Name"
+        ],
+        "summary": "Get the gender of a first name",
+        "description": "Determines the gender of a first name (given name)",
+        "operationId": "Name_GetGender",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Gender request information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetGenderRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GetGenderResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/name/identifier": {
+      "post": {
+        "tags": [
+          "Name"
+        ],
+        "summary": "Validate a code identifier",
+        "description": "Determines if the input name is a valid technical / code identifier.  Configure input rules such as whether whitespace, hyphens, underscores, etc. are allowed.  For example, a valid identifier might be \"helloWorld\" but not \"hello*World\".",
+        "operationId": "Name_Identifier",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Identifier validation request information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ValidateIdentifierRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateIdentifierResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/phonenumber/basic": {
+      "post": {
+        "tags": [
+          "PhoneNumber"
+        ],
+        "summary": "Validate phone number (basic)",
+        "description": "Validate a phone number by analyzing the syntax",
+        "operationId": "PhoneNumber_SyntaxOnly",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "Phone number to validate in a PhoneNumberValidateRequest object.  Try a phone number such as \"1.800.463.3339\", and either leave DefaultCountryCode blank or use \"US\".",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PhoneNumberValidateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PhoneNumberValidationResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/text-input/check/sql-injection": {
+      "post": {
+        "tags": [
+          "TextInput"
+        ],
+        "summary": "Check text input for SQL Injection (SQLI) attacks",
+        "description": "Detects SQL Injection (SQLI) attacks from text input.",
+        "operationId": "TextInput_CheckSqlInjection",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "User-facing text input.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "detectionLevel",
+            "in": "header",
+            "description": "Set to Normal to target a high-security SQL Injection detection level with a very low false positive rate; select High to target a very-high security SQL Injection detection level with higher false positives.  Default is Normal (recommended).",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SqlInjectionDetectionResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/text-input/check/sql-injection/batch": {
+      "post": {
+        "tags": [
+          "TextInput"
+        ],
+        "summary": "Check and protect multiple text inputs for SQL Injection (SQLI) attacks in batch",
+        "description": "Detects SQL Injection (SQLI) attacks from multiple text inputs.  Output preverses order of input items.",
+        "operationId": "TextInput_CheckSqlInjectionBatch",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "User-facing text input.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SqlInjectionCheckBatchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SqlInjectionCheckBatchResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/text-input/check/xss": {
+      "post": {
+        "tags": [
+          "TextInput"
+        ],
+        "summary": "Check text input for Cross-Site-Scripting (XSS) attacks",
+        "description": "Detects XSS (Cross-Site-Scripting) attacks from text input.",
+        "operationId": "TextInput_CheckXss",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "User-facing text input.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/XssProtectionResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/text-input/protect/xss": {
+      "post": {
+        "tags": [
+          "TextInput"
+        ],
+        "summary": "Protect text input from Cross-Site-Scripting (XSS) attacks through normalization",
+        "description": "Detects and removes XSS (Cross-Site-Scripting) attacks from text input through normalization.  Returns the normalized result, as well as information on whether the original input contained an XSS risk.",
+        "operationId": "TextInput_ProtectXss",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "User-facing text input.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/XssProtectionResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/text-input/check-and-protect/xss/batch": {
+      "post": {
+        "tags": [
+          "TextInput"
+        ],
+        "summary": "Check and protect multiple text inputs for Cross-Site-Scripting (XSS) attacks in batch",
+        "description": "Detects XSS (Cross-Site-Scripting) attacks from multiple text inputs.  Output preverses order of input items.",
+        "operationId": "TextInput_CheckXssBatch",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "User-facing text input.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/XssProtectionBatchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/XssProtectionBatchResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/text-input/html/check/ssrf": {
+      "post": {
+        "tags": [
+          "TextInput"
+        ],
+        "summary": "Protect html input from Server-side Request Forgery (SSRF) attacks",
+        "description": "Detects SSRF (Server-side request forgery) attacks and unsafe URL attacks from HTML text input, where attackers can attempt to access unsafe local or network paths in the server environment by injecting them into HTML.",
+        "operationId": "TextInput_CheckHtmlSsrf",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "User-facing HTML input.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "allowCidScheme",
+            "in": "header",
+            "description": "Optional: Set to true to allow cid: scheme URLs for email message attachments.  Default is false.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/HtmlSsrfDetectionResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/text-input/check/xxe": {
+      "post": {
+        "tags": [
+          "TextInput"
+        ],
+        "summary": "Protect text input from XML External Entity (XXE) attacks",
+        "description": "Detects XXE (XML External Entity) attacks from text input.",
+        "operationId": "TextInput_CheckXxe",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "description": "User-facing text input.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "allowInternetUrls",
+            "in": "header",
+            "description": "Optional: Set to true to allow Internet-based dependency URLs for DTDs and other XML External Entitites, set to false to block.  Default is false.",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "knownSafeUrls",
+            "in": "header",
+            "description": "Optional: Comma separated list of fully-qualified URLs that will automatically be considered safe.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "knownUnsafeUrls",
+            "in": "header",
+            "description": "Optional: Comma separated list of fully-qualified URLs that will automatically be considered unsafe.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/XxeDetectionResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/text-input/check/xxe/batch": {
+      "post": {
+        "tags": [
+          "TextInput"
+        ],
+        "summary": "Protect text input from XML External Entity (XXE) attacks",
+        "description": "Detects XXE (XML External Entity) attacks from text input.",
+        "operationId": "TextInput_CheckXxeBatch",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/XxeDetectionBatchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/XxeDetectionBatchResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/useragent/parse": {
+      "post": {
+        "tags": [
+          "UserAgent"
+        ],
+        "summary": "Parse an HTTP User-Agent string, identify robots",
+        "description": "Uses a parsing system and database to parse the User-Agent into its structured component parts, such as Browser, Browser Version, Browser Engine, Operating System, and importantly, Robot identification.",
+        "operationId": "UserAgent_Parse",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "Input parse request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserAgentValidateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserAgentValidateResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    },
+    "/validate/vat/lookup": {
+      "post": {
+        "tags": [
+          "Vat"
+        ],
+        "summary": "Validate a VAT number",
+        "description": "Checks if a VAT code is valid, and if it is, returns more information about it.  The first two letters of the VAT number must be letters that indicate the country, such as LU20260743.  Possible country codes include Austria (AT), Belgium (BE), Bulgaria (BG), Cyprus (CY), Czech Republic (CZ), Germany (DE), Denmark (DK), Estonia (EE), Greece (EL), Spain (ES), Finland (FI), France (FR), United Kingdom (GB), Croatia (HR), Hungary (HU), Ireland (IE), Italy (IT), Lithuania (LT), Luxembourg (LU), Latvia (LV), Malta (MT), The Netherlands (NL), Poland (PL), Portugal (PT), Romania (RO), Sweden (SE), Slovenia (SI), Slovakia (SK).",
+        "operationId": "Vat_VatLookup",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Input VAT code",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VatLookupRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/VatLookupResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Apikey": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ParseAddressRequest": {
+      "description": "Request to parse an address formatted as a string/free text into a structured address",
+      "type": "object",
+      "properties": {
+        "AddressString": {
+          "description": "A mailing address or street address formatted as a single text string; this will be parsed into its components",
+          "type": "string"
+        },
+        "CapitalizationMode": {
+          "description": "Optional; indicates how the parsed output should be capitalized; default is Title Case; possible values are: \"Uppercase\" will set the capitalization to UPPER CASE; \"Lowercase\" will set the capitalization to lower case; \"Titlecase\" will set the capitalization to Title Case; and \"Originalcase\" will preserve the original casing as much as possible",
+          "type": "string"
+        }
+      }
+    },
+    "ParseAddressResponse": {
+      "description": "Result of parsing an address into its component parts",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if the parsing operation was successful, false otherwise",
+          "type": "boolean"
+        },
+        "Building": {
+          "description": "The name of the building, house or structure if applicable, such as \"Cloudmersive Building 2\".  This will often by null.",
+          "type": "string"
+        },
+        "StreetNumber": {
+          "description": "The street number or house number of the address.  For example, in the address \"1600 Pennsylvania Avenue NW\" the street number would be \"1600\".  This value will typically be populated for most addresses.",
+          "type": "string"
+        },
+        "Street": {
+          "description": "The name of the street or road of the address.  For example, in the address \"1600 Pennsylvania Avenue NW\" the street number would be \"Pennsylvania Avenue NW\".",
+          "type": "string"
+        },
+        "City": {
+          "description": "The city of the address.",
+          "type": "string"
+        },
+        "StateOrProvince": {
+          "description": "The state or province of the address.",
+          "type": "string"
+        },
+        "PostalCode": {
+          "description": "The postal code or zip code of the address.",
+          "type": "string"
+        },
+        "CountryFullName": {
+          "description": "Country of the address, if present in the address.  If not included in the address it will be null.",
+          "type": "string"
+        },
+        "ISOTwoLetterCode": {
+          "description": "Two-letter ISO 3166-1 country code",
+          "type": "string"
+        }
+      }
+    },
+    "ValidateAddressRequest": {
+      "description": "Request to Validate a Street Address",
+      "type": "object",
+      "properties": {
+        "StreetAddress": {
+          "description": "Required; Street address to validate, such as '2950 Buskirk Ave.'",
+          "type": "string"
+        },
+        "City": {
+          "description": "Required; City part of the addrerss to validate, such as 'Walnut Creek'",
+          "type": "string"
+        },
+        "StateOrProvince": {
+          "description": "Required; State or province of the address to validate, such as 'CA' or 'California'",
+          "type": "string"
+        },
+        "PostalCode": {
+          "description": "Optional (recommended); Zip code or postal code of the address to validate, such as '94597'",
+          "type": "string"
+        },
+        "CountryFullName": {
+          "description": "Optional (recommended); Name of the country, such as 'United States'.  If left blank, and CountryCode is also left blank, will default to United States.  Global countries are supported.",
+          "type": "string"
+        },
+        "CountryCode": {
+          "description": "Optional; two-letter country code (Two-letter ISO 3166-1 country code) of the country.  If left blank, and CountryFullName is also left blank, will default to United States.  Global countries are supported.",
+          "type": "string"
+        }
+      }
+    },
+    "ValidateAddressResponse": {
+      "description": "Result of validating a street address",
+      "type": "object",
+      "properties": {
+        "ValidAddress": {
+          "description": "True if the address is valid, false otherwise",
+          "type": "boolean"
+        },
+        "Latitude": {
+          "format": "double",
+          "description": "If the address is valid, the degrees latitude of the validated address, null otherwise",
+          "type": "number"
+        },
+        "Longitude": {
+          "format": "double",
+          "description": "If the address is valid, the degrees longitude of the validated address, null otherwise",
+          "type": "number"
+        }
+      }
+    },
+    "NormalizeAddressResponse": {
+      "description": "Result of validating a street address",
+      "type": "object",
+      "properties": {
+        "ValidAddress": {
+          "description": "True if the address is valid, false otherwise",
+          "type": "boolean"
+        },
+        "Building": {
+          "description": "The name of the building, house or structure if applicable, such as \"Cloudmersive Building 2\".  This will often by null.",
+          "type": "string"
+        },
+        "StreetNumber": {
+          "description": "The street number or house number of the address.  For example, in the address \"1600 Pennsylvania Avenue NW\" the street number would be \"1600\".  This value will typically be populated for most addresses.",
+          "type": "string"
+        },
+        "Street": {
+          "description": "The name of the street or road of the address.  For example, in the address \"1600 Pennsylvania Avenue NW\" the street number would be \"Pennsylvania Avenue NW\".",
+          "type": "string"
+        },
+        "City": {
+          "description": "The city of the address.",
+          "type": "string"
+        },
+        "StateOrProvince": {
+          "description": "The state or province of the address.",
+          "type": "string"
+        },
+        "PostalCode": {
+          "description": "The postal code or zip code of the address.",
+          "type": "string"
+        },
+        "CountryFullName": {
+          "description": "Country of the address, if present in the address.  If not included in the address it will be null.",
+          "type": "string"
+        },
+        "ISOTwoLetterCode": {
+          "description": "Two-letter ISO 3166-1 country code",
+          "type": "string"
+        },
+        "Latitude": {
+          "format": "double",
+          "description": "If the address is valid, the degrees latitude of the validated address, null otherwise",
+          "type": "number"
+        },
+        "Longitude": {
+          "format": "double",
+          "description": "If the address is valid, the degrees longitude of the validated address, null otherwise",
+          "type": "number"
+        }
+      }
+    },
+    "ValidateCityRequest": {
+      "description": "Request to Validate a City and State or Province in a country",
+      "type": "object",
+      "properties": {
+        "City": {
+          "description": "Required: City of the address to validate, such as 'San Francisco' or 'London'",
+          "type": "string"
+        },
+        "StateOrProvince": {
+          "description": "Required: State or province of the address to validate, such as 'California' or 'CA'",
+          "type": "string"
+        },
+        "CountryFullName": {
+          "description": "Optional (recommended); Name of the country, such as 'United States'.  If left blank, and CountryCode is also left blank, will default to United States.  Global countries are supported.",
+          "type": "string"
+        },
+        "CountryCode": {
+          "description": "Optional; two-letter country code (Two-letter ISO 3166-1 country code) of the country.  If left blank, and CountryFullName is also left blank, will default to United States.  Global countries are supported.",
+          "type": "string"
+        }
+      }
+    },
+    "ValidateCityResponse": {
+      "description": "Result of validating a city",
+      "type": "object",
+      "properties": {
+        "ValidCity": {
+          "description": "True if the city is valid, false otherwise",
+          "type": "boolean"
+        },
+        "City": {
+          "description": "If valid, City corresponding to the input postal code, such as 'Walnut Creek'",
+          "type": "string"
+        },
+        "StateOrProvince": {
+          "description": "If valid; State or province corresponding to the input state name, such as 'CA' or 'California'",
+          "type": "string"
+        },
+        "Latitude": {
+          "format": "double",
+          "description": "If the postal code is valid, the degrees latitude of the centroid of the state, null otherwise",
+          "type": "number"
+        },
+        "Longitude": {
+          "format": "double",
+          "description": "If the postal code is valid, the degrees longitude of the centroid of the state, null otherwise",
+          "type": "number"
+        }
+      }
+    },
+    "ValidateStateRequest": {
+      "description": "Request to Validate a State or Province in a country",
+      "type": "object",
+      "properties": {
+        "StateOrProvince": {
+          "description": "Required: State or province of the address to validate, such as 'California' or 'CA'",
+          "type": "string"
+        },
+        "CountryFullName": {
+          "description": "Optional (recommended); Name of the country, such as 'United States'.  If left blank, and CountryCode is also left blank, will default to United States.  Global countries are supported.",
+          "type": "string"
+        },
+        "CountryCode": {
+          "description": "Optional; two-letter country code (Two-letter ISO 3166-1 country code) of the country.  If left blank, and CountryFullName is also left blank, will default to United States.  Global countries are supported.",
+          "type": "string"
+        }
+      }
+    },
+    "ValidateStateResponse": {
+      "description": "Result of validating a state",
+      "type": "object",
+      "properties": {
+        "ValidState": {
+          "description": "True if the address is valid, false otherwise",
+          "type": "boolean"
+        },
+        "StateOrProvince": {
+          "description": "If valid; State or province corresponding to the input state name, such as 'CA' or 'California'",
+          "type": "string"
+        },
+        "Latitude": {
+          "format": "double",
+          "description": "If the postal code is valid, the degrees latitude of the centroid of the state, null otherwise",
+          "type": "number"
+        },
+        "Longitude": {
+          "format": "double",
+          "description": "If the postal code is valid, the degrees longitude of the centroid of the state, null otherwise",
+          "type": "number"
+        }
+      }
+    },
+    "ValidatePostalCodeRequest": {
+      "description": "Request to Validate a Postal Code",
+      "type": "object",
+      "properties": {
+        "PostalCode": {
+          "description": "Required: Zip code or postal code of the address to validate, such as '94597'",
+          "type": "string"
+        },
+        "CountryFullName": {
+          "description": "Optional (recommended); Name of the country, such as 'United States'.  If left blank, and CountryCode is also left blank, will default to United States.  Global countries are supported.",
+          "type": "string"
+        },
+        "CountryCode": {
+          "description": "Optional; two-letter country code (Two-letter ISO 3166-1 country code) of the country.  If left blank, and CountryFullName is also left blank, will default to United States.  Global countries are supported.",
+          "type": "string"
+        }
+      }
+    },
+    "ValidatePostalCodeResponse": {
+      "description": "Result of validating a postal code",
+      "type": "object",
+      "properties": {
+        "ValidPostalCode": {
+          "description": "True if the Postal Code is valid, false otherwise",
+          "type": "boolean"
+        },
+        "City": {
+          "description": "If valid, City corresponding to the input postal code, such as 'Walnut Creek'",
+          "type": "string"
+        },
+        "StateOrProvince": {
+          "description": "If valid; State or province corresponding to the input postal code, such as 'CA' or 'California'",
+          "type": "string"
+        },
+        "Latitude": {
+          "format": "double",
+          "description": "If the postal code is valid, the degrees latitude of the centroid of the postal code, null otherwise",
+          "type": "number"
+        },
+        "Longitude": {
+          "format": "double",
+          "description": "If the postal code is valid, the degrees longitude of the centroid of the postal code, null otherwise",
+          "type": "number"
+        }
+      }
+    },
+    "ValidateCountryRequest": {
+      "description": "Input parameter to a country validation request",
+      "type": "object",
+      "properties": {
+        "RawCountryInput": {
+          "description": "Raw country input - can be a two-letter code (FIPS 10-4 or ISO 3166-1), three-letter code (ISO 3166-1) or country name",
+          "type": "string"
+        }
+      }
+    },
+    "ValidateCountryResponse": {
+      "description": "Result of performing a country validation operation",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if successful, false otherwise",
+          "type": "boolean"
+        },
+        "CountryFullName": {
+          "description": "Full name of the country",
+          "type": "string"
+        },
+        "ISOTwoLetterCode": {
+          "description": "Two-letter ISO 3166-1 country code",
+          "type": "string"
+        },
+        "FIPSTwoLetterCode": {
+          "description": "Two-letter FIPS 10-4 country code",
+          "type": "string"
+        },
+        "ThreeLetterCode": {
+          "description": "Three-letter ISO 3166-1 country code",
+          "type": "string"
+        },
+        "IsEuropeanUnionMember": {
+          "description": "True if this country is currently a member of the European Union (EU), false otherwise",
+          "type": "boolean"
+        },
+        "Timezones": {
+          "description": "Time zones (IANA/Olsen) in the country",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Timezone"
+          }
+        },
+        "ISOCurrencyCode": {
+          "description": "ISO 4217 currency three-letter code associated with the country",
+          "type": "string"
+        },
+        "CurrencySymbol": {
+          "description": "Symbol associated with the currency",
+          "type": "string"
+        },
+        "CurrencyEnglishName": {
+          "description": "Full name of the currency",
+          "type": "string"
+        },
+        "Region": {
+          "description": "Region (continent) in which the country is located; possible values are None, Europe, Americas, Asia, Africa, Oceania",
+          "type": "string"
+        },
+        "Subregion": {
+          "description": "Subregion in which the country is located; possible values are None, NorthernEurope, WesternEurope, SouthernEurope, EasternEurope, CentralAmerica, NorthernAmerica, SouthAmerica, EasternAfrica, MiddleAfrica, NorthernAfrica , SouthernAfrica , WesternAfrica , CentralAsia , EasternAsia , SouthernAsia , SouthEasternAsia , WesternAsia , Southern , Middle , AustraliaandNewZealand , Melanesia , Polynesia , Micronesia , Caribbean,",
+          "type": "string"
+        }
+      }
+    },
+    "Timezone": {
+      "description": "IANA/Olsen time zone",
+      "type": "object",
+      "properties": {
+        "Name": {
+          "description": "Name of the Time Zone",
+          "type": "string"
+        },
+        "BaseUTCOffset": {
+          "description": "UTC offset for this time zone",
+          "type": "string"
+        },
+        "Now": {
+          "format": "date-time",
+          "description": "The current time (Now) in this time zone",
+          "type": "string"
+        }
+      }
+    },
+    "CountryListResult": {
+      "description": "Result of enumerating available countries",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if the operation was successful, false otherwise",
+          "type": "boolean"
+        },
+        "Countries": {
+          "description": "List of current ISO 3166-1 countries in the world",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountryDetails"
+          }
+        }
+      }
+    },
+    "CountryDetails": {
+      "description": "Details of one country",
+      "type": "object",
+      "properties": {
+        "CountryName": {
+          "description": "Name of the country",
+          "type": "string"
+        },
+        "ThreeLetterCode": {
+          "description": "Three-letter ISO 3166-1 country code",
+          "type": "string"
+        },
+        "ISOTwoLetterCode": {
+          "description": "Two-letter ISO 3166-1 country code",
+          "type": "string"
+        },
+        "IsEuropeanUnionMember": {
+          "description": "True if this country is currently a member of the European Union (EU), false otherwise",
+          "type": "boolean"
+        },
+        "ISOCurrencyCode": {
+          "description": "ISO 4217 currency three-letter code associated with the country",
+          "type": "string"
+        },
+        "CurrencySymbol": {
+          "description": "Symbol associated with the currency",
+          "type": "string"
+        },
+        "CurrencyEnglishName": {
+          "description": "Full name of the currency",
+          "type": "string"
+        },
+        "Region": {
+          "description": "Region (continent) in which the country is located; possible values are None, Europe, Americas, Asia, Africa, Oceania",
+          "type": "string"
+        },
+        "Subregion": {
+          "description": "Subregion in which the country is located; possible values are None, NorthernEurope, WesternEurope, SouthernEurope, EasternEurope, CentralAmerica, NorthernAmerica, SouthAmerica, EasternAfrica, MiddleAfrica, NorthernAfrica , SouthernAfrica , WesternAfrica , CentralAsia , EasternAsia , SouthernAsia , SouthEasternAsia , WesternAsia , Southern , Middle , AustraliaandNewZealand , Melanesia , Polynesia , Micronesia , Caribbean,",
+          "type": "string"
+        }
+      }
+    },
+    "GetTimezonesRequest": {
+      "description": "Request to get time zones for a country",
+      "type": "object",
+      "properties": {
+        "CountryCodeOrName": {
+          "description": "Can be the two-letter, three-letter country codes or country name",
+          "type": "string"
+        }
+      }
+    },
+    "GetTimezonesResponse": {
+      "description": "Result of performing a get time zones operation",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if successful, false otherwise",
+          "type": "boolean"
+        },
+        "CountryFullName": {
+          "description": "Full name of the country",
+          "type": "string"
+        },
+        "ISOTwoLetterCode": {
+          "description": "Two-letter ISO 3166-1 country code",
+          "type": "string"
+        },
+        "FIPSTwoLetterCode": {
+          "description": "Two-letter FIPS 10-4 country code",
+          "type": "string"
+        },
+        "ThreeLetterCode": {
+          "description": "Three-letter ISO 3166-1 country code",
+          "type": "string"
+        },
+        "Timezones": {
+          "description": "Time zones (IANA/Olsen) in the country",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Timezone"
+          }
+        }
+      }
+    },
+    "ReverseGeocodeAddressRequest": {
+      "description": "Request to reverse geocode a Street Address",
+      "type": "object",
+      "properties": {
+        "Latitude": {
+          "format": "double",
+          "description": "Latitude coordinate in WGS84 format",
+          "type": "number"
+        },
+        "Longitude": {
+          "format": "double",
+          "description": "Longitude coordinate in WGS84 format",
+          "type": "number"
+        }
+      }
+    },
+    "ReverseGeocodeAddressResponse": {
+      "description": "Result of reverse geocoding a street address",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if the address operation was successful, false otherwise",
+          "type": "boolean"
+        },
+        "StreetAddress": {
+          "description": "Street address to validate, such as '2950 Buskirk Ave.'",
+          "type": "string"
+        },
+        "City": {
+          "description": "City part of the addrerss to validate, such as 'Walnut Creek'",
+          "type": "string"
+        },
+        "StateOrProvince": {
+          "description": "State or province of the address to validate, such as 'CA' or 'California'",
+          "type": "string"
+        },
+        "PostalCode": {
+          "description": "Zip code or postal code of the address to validate, such as '94597'",
+          "type": "string"
+        },
+        "CountryFullName": {
+          "description": "Name of the country, such as 'United States'.  Global countries are supported.",
+          "type": "string"
+        },
+        "CountryCode": {
+          "description": "Three-letter ISO 3166-1 country code",
+          "type": "string"
+        }
+      }
+    },
+    "DateTimeNowResult": {
+      "description": "Current date and time response",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if successful, false otherwise",
+          "type": "boolean"
+        },
+        "Now": {
+          "format": "date-time",
+          "description": "Current date, time, and time zone in standard JSON date format",
+          "type": "string"
+        },
+        "NowGmt": {
+          "format": "date-time",
+          "description": "Current GMT-time-zone date, time, and time zone in standard JSON date format",
+          "type": "string"
+        }
+      }
+    },
+    "GetPublicHolidaysRequest": {
+      "description": "Input parameter to a country validation request",
+      "type": "object",
+      "properties": {
+        "RawCountryInput": {
+          "description": "Two-letter code (FIPS 10-4 or ISO 3166-1) of the country; if not specified, defaults to United States",
+          "type": "string"
+        },
+        "Year": {
+          "format": "int32",
+          "description": "Optional - the year in which to retrieve the holidays; if left blank (0) it will default to the current year",
+          "type": "integer"
+        }
+      }
+    },
+    "PublicHolidaysResponse": {
+      "description": "Result of performing a get public holidays request operation",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if successful, false otherwise",
+          "type": "boolean"
+        },
+        "PublicHolidays": {
+          "description": "Public holidays in the requested country and year",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PublicHolidayOccurrence"
+          }
+        }
+      }
+    },
+    "PublicHolidayOccurrence": {
+      "description": "Public holiday occurrence",
+      "type": "object",
+      "properties": {
+        "EnglishName": {
+          "description": "Name of the holiday in English",
+          "type": "string"
+        },
+        "LocalName": {
+          "description": "Local name of the holiday",
+          "type": "string"
+        },
+        "OccurrenceDate": {
+          "format": "date-time",
+          "description": "Date of the holiday (start time)",
+          "type": "string"
+        },
+        "HolidayType": {
+          "description": "Type of the holiday; possible values are: Public, Optional",
+          "type": "string"
+        },
+        "Nationwide": {
+          "description": "True if the holiday is celebrated in all locales in the country, false otherwise",
+          "type": "boolean"
+        }
+      }
+    },
+    "DateTimeStandardizedParseRequest": {
+      "description": "Input parameter to a date time parsing request",
+      "type": "object",
+      "properties": {
+        "RawDateTimeInput": {
+          "description": "Raw string input of a standard-formatted date and time for parsing",
+          "type": "string"
+        },
+        "CountryCode": {
+          "description": "Optional: specify the two-letter country code to optimzie date formatting; default is US",
+          "type": "string"
+        }
+      }
+    },
+    "DateTimeStandardizedParseResponse": {
+      "description": "Result of performing a date time parsing",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if successful, false otherwise",
+          "type": "boolean"
+        },
+        "ParsedDateResult": {
+          "format": "date-time",
+          "description": "Result of performing a date time parsing",
+          "type": "string"
+        },
+        "Year": {
+          "format": "int32",
+          "description": "Year of the parsed date time result",
+          "type": "integer"
+        },
+        "Month": {
+          "format": "int32",
+          "description": "Month of the parsed date time result",
+          "type": "integer"
+        },
+        "Day": {
+          "format": "int32",
+          "description": "Day of the parsed date time result",
+          "type": "integer"
+        },
+        "Hour": {
+          "format": "int32",
+          "description": "Hour of the parsed date time result (24-hour)",
+          "type": "integer"
+        },
+        "Minute": {
+          "format": "int32",
+          "description": "Minute of the parsed date time result",
+          "type": "integer"
+        },
+        "Second": {
+          "format": "int32",
+          "description": "Second of the parsed date time result",
+          "type": "integer"
+        },
+        "DayOfWeek": {
+          "description": "Day of week",
+          "type": "string"
+        }
+      }
+    },
+    "DateTimeNaturalLanguageParseRequest": {
+      "description": "Input parameter to a date time parsing request",
+      "type": "object",
+      "properties": {
+        "RawDateTimeInput": {
+          "description": "Raw string input of a natural language-formatted date and time for parsing",
+          "type": "string"
+        }
+      }
+    },
+    "CheckResponse": {
+      "description": "Result of a validation operation",
+      "type": "object",
+      "properties": {
+        "ValidDomain": {
+          "description": "True if the domain name was valid, false if it is not",
+          "type": "boolean"
+        }
+      }
+    },
+    "DomainQualityResponse": {
+      "description": "Result of performing a domain quality score operation",
+      "type": "object",
+      "properties": {
+        "DomainQualityScore": {
+          "format": "double",
+          "description": "The quality score of the domain name; possible values are 0.0 to 10.0 with 10.0 being the highest and 0.0 being the lowest quality.",
+          "type": "number"
+        }
+      }
+    },
+    "WhoisResponse": {
+      "description": "Result of a WHOIS operation",
+      "type": "object",
+      "properties": {
+        "ValidDomain": {
+          "description": "True if the domain is valid, false if it is not",
+          "type": "boolean"
+        },
+        "RegistrantName": {
+          "description": "Name of the domain registrant",
+          "type": "string"
+        },
+        "RegistrantOrganization": {
+          "description": "Organization name of the domain registrant",
+          "type": "string"
+        },
+        "RegistrantEmail": {
+          "description": "Email address of the domain registrant",
+          "type": "string"
+        },
+        "RegistrantStreetNumber": {
+          "description": "Street number of the address of the domain registrant, if available",
+          "type": "string"
+        },
+        "RegistrantStreet": {
+          "description": "Street name of the address of the domain registrant, if available",
+          "type": "string"
+        },
+        "RegistrantCity": {
+          "description": "City of the domain registrant, if available",
+          "type": "string"
+        },
+        "RegistrantStateOrProvince": {
+          "description": "State or Province of the address of the domain registrant, if available",
+          "type": "string"
+        },
+        "RegistrantPostalCode": {
+          "description": "Postal code of the address of the domain registrant, if available",
+          "type": "string"
+        },
+        "RegistrantCountry": {
+          "description": "Country of the address of the domain registrant, if available",
+          "type": "string"
+        },
+        "RegistrantRawAddress": {
+          "description": "Raw address string of the domain registrant, if available",
+          "type": "string"
+        },
+        "RegistrantTelephone": {
+          "description": "Telephone number of the address of the domain registrant",
+          "type": "string"
+        },
+        "WhoisServer": {
+          "description": "Server used to lookup WHOIS information (may change based on lookup).",
+          "type": "string"
+        },
+        "RawTextRecord": {
+          "description": "WHOIS raw text record",
+          "type": "string"
+        },
+        "CreatedDt": {
+          "format": "date-time",
+          "description": "Creation date for the record",
+          "type": "string"
+        }
+      }
+    },
+    "ValidateUrlRequestSyntaxOnly": {
+      "description": "Request to determine if a URL is valid",
+      "type": "object",
+      "properties": {
+        "URL": {
+          "description": "URL to validate",
+          "type": "string"
+        }
+      }
+    },
+    "ValidateUrlResponseSyntaxOnly": {
+      "description": "Result of validating a URL with syntax only",
+      "type": "object",
+      "properties": {
+        "ValidURL": {
+          "description": "True if the URL is valid, false otherwise",
+          "type": "boolean"
+        },
+        "WellFormedURL": {
+          "description": "Well-formed version of the URL",
+          "type": "string"
+        },
+        "TopLevelDomainName": {
+          "description": "The top-level domain name of the URL, e.g. mydomain.com",
+          "type": "string"
+        }
+      }
+    },
+    "ValidateUrlRequestFull": {
+      "description": "Request to determine if a URL is valid",
+      "type": "object",
+      "properties": {
+        "URL": {
+          "description": "URL to validate",
+          "type": "string"
+        }
+      }
+    },
+    "ValidateUrlResponseFull": {
+      "description": "Result of validating a URL with full validation",
+      "type": "object",
+      "properties": {
+        "ValidURL": {
+          "description": "True if the URL has valid syntax, a valid domain, a valid endpoint, and passes virus scan checks; false otherwise",
+          "type": "boolean"
+        },
+        "Valid_Syntax": {
+          "description": "True if the URL has valid syntax, false otherwise",
+          "type": "boolean"
+        },
+        "Valid_Domain": {
+          "description": "True if the domain name is valid and exists, false otherwise",
+          "type": "boolean"
+        },
+        "Valid_Endpoint": {
+          "description": "True if the endpoint is up and responsive and passes a virus scan check, false otherwise",
+          "type": "boolean"
+        },
+        "WellFormedURL": {
+          "description": "Well-formed version of the URL",
+          "type": "string"
+        }
+      }
+    },
+    "PhishingCheckRequest": {
+      "description": "Request to determine if a URL is a Phishing threat",
+      "type": "object",
+      "properties": {
+        "URL": {
+          "description": "URL to validate",
+          "type": "string"
+        }
+      }
+    },
+    "PhishingCheckResponse": {
+      "description": "Result of checking a URL for Phishing threats",
+      "type": "object",
+      "properties": {
+        "CleanURL": {
+          "description": "True if the URL is clean, false if it is at risk of containing a Phishing threat or attack",
+          "type": "boolean"
+        },
+        "ThreatType": {
+          "description": "Threat type of the Phishing threat; possible values are VerifiedPhishingURL, UnverifiedPhishingURL, or VerifiedPhishingDomain",
+          "type": "string"
+        }
+      }
+    },
+    "IsAdminPathResponse": {
+      "description": "Result of performing an Admin Path operation",
+      "type": "object",
+      "properties": {
+        "IsAdminPathNode": {
+          "description": "True if the input IP address is an Admin Path, and false otherwise",
+          "type": "boolean"
+        },
+        "Successful": {
+          "description": "True if the operation was successful, false otherwise",
+          "type": "boolean"
+        }
+      }
+    },
+    "UrlSafetyCheckRequestFull": {
+      "description": "Request to determine if a URL is a safety threat check",
+      "type": "object",
+      "properties": {
+        "URL": {
+          "description": "URL to validate",
+          "type": "string"
+        }
+      }
+    },
+    "UrlSafetyCheckResponseFull": {
+      "description": "Result of checking a URL for safety threats",
+      "type": "object",
+      "properties": {
+        "CleanURL": {
+          "description": "True if the URL is clean, false if it is at risk of containing a safety threat or attack",
+          "type": "boolean"
+        },
+        "ThreatType": {
+          "description": "Threat type identified, if any; possible values are \"ForcedDownload\", \"VirusesAndMalware\", \"Phishing\"",
+          "type": "string"
+        }
+      }
+    },
+    "UrlSsrfRequestFull": {
+      "description": "Request to determine if a URL is an SSRF threat check",
+      "type": "object",
+      "properties": {
+        "URL": {
+          "description": "URL to validate",
+          "type": "string"
+        },
+        "BlockedDomains": {
+          "description": "Top level domains that you do not want to allow access to, e.g. mydomain.com - will block all subdomains as well",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "UrlSsrfResponseFull": {
+      "description": "Result of checking a URL for SSRF threats",
+      "type": "object",
+      "properties": {
+        "CleanURL": {
+          "description": "True if the URL is clean, false if it is at risk of containing an SSRF threat or attack",
+          "type": "boolean"
+        },
+        "ThreatLevel": {
+          "description": "Threat level of the URL; possible values are High, Medium, Low and None",
+          "type": "string"
+        }
+      }
+    },
+    "UrlSsrfRequestBatch": {
+      "description": "Batch operation to perform SSRF threat checks on multiple URLs",
+      "type": "object",
+      "properties": {
+        "InputItems": {
+          "description": "Input URLs to check for SSRF threats",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UrlSsrfRequestFull"
+          }
+        }
+      }
+    },
+    "UrlSsrfResponseBatch": {
+      "description": "Result of performing SSRF threat checks on multiple URLs",
+      "type": "object",
+      "properties": {
+        "OutputItems": {
+          "description": "Results of the operation, with indexes matched to input values",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UrlSsrfResponseFull"
+          }
+        }
+      }
+    },
+    "UrlHtmlSsrfRequestFull": {
+      "description": "Request to determine if a URL contains HTML-embedded SSRF threats",
+      "type": "object",
+      "properties": {
+        "URL": {
+          "description": "URL to validate",
+          "type": "string"
+        }
+      }
+    },
+    "UrlHtmlSsrfResponseFull": {
+      "description": "Result of checking a URL for HTML-embedded SSRF threats",
+      "type": "object",
+      "properties": {
+        "CleanURL": {
+          "description": "True if the URL is clean, false if it is at risk of containing an SSRF threat or attack",
+          "type": "boolean"
+        },
+        "HttpResponseCode": {
+          "format": "int32",
+          "description": "HTTP response code from the URL",
+          "type": "integer"
+        }
+      }
+    },
+    "AddressVerifySyntaxOnlyResponse": {
+      "description": "Syntactic validity of email address",
+      "type": "object",
+      "properties": {
+        "ValidAddress": {
+          "description": "True if the email address is syntactically valid, false if it is not",
+          "type": "boolean"
+        },
+        "Domain": {
+          "description": "Domain name of the email address",
+          "type": "string"
+        },
+        "IsFreeEmailProvider": {
+          "description": "True if the email domain name is a free provider (typically a free to sign up web email provider for consumers / personal use), false otherwise.",
+          "type": "boolean"
+        },
+        "IsDisposable": {
+          "description": "True if the email address is a disposable email address, false otherwise; these disposable providers are not typically used to receive email and so will have a low likelihood of opening mail sent there.",
+          "type": "boolean"
+        }
+      }
+    },
+    "AddressGetServersResponse": {
+      "description": "Result of a partial email address validation",
+      "type": "object",
+      "properties": {
+        "Success": {
+          "description": "True if partial address validation was successufl, false otherwise",
+          "type": "boolean"
+        },
+        "Servers": {
+          "description": "Email servers for this email address",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "FullEmailValidationResponse": {
+      "description": "Full email addresss validation result",
+      "type": "object",
+      "properties": {
+        "ValidAddress": {
+          "description": "True if the email address is valid overall, false otherwise",
+          "type": "boolean"
+        },
+        "MailServerUsedForValidation": {
+          "description": "Email server connected to for verification",
+          "type": "string"
+        },
+        "Valid_Syntax": {
+          "description": "True if the syntax of the email address is valid, false otherwise.  This is one component of ValidAddress, but not the only one.",
+          "type": "boolean"
+        },
+        "Valid_Domain": {
+          "description": "True if the domain name of the email address is valid, false otherwise.  This is one component of ValidAddress, but not the only one.",
+          "type": "boolean"
+        },
+        "Valid_SMTP": {
+          "description": "True if the email address was verified by the remote server, false otherwise.  This is one component of ValidAddress, but not the only one.",
+          "type": "boolean"
+        },
+        "IsCatchallDomain": {
+          "description": "True if the domain is a catch-all domain name, false otherwise.  Catch-all domain names, while rare, always accept inbound email to ensure they do not lose any potentially useful emails.  Catch-all domain names can occassionally be configured to first accept and store all inbound email, but then later send a bounce email back to the sender after a delayed period of time.",
+          "type": "boolean"
+        },
+        "Domain": {
+          "description": "Domain name of the email address",
+          "type": "string"
+        },
+        "IsFreeEmailProvider": {
+          "description": "True if the email domain name is a free provider (typically a free to sign up web email provider for consumers / personal use), false otherwise.",
+          "type": "boolean"
+        },
+        "IsDisposable": {
+          "description": "True if the email address is a disposable email address, false otherwise; these disposable providers are not typically used to receive email and so will have a low likelihood of opening mail sent there.",
+          "type": "boolean"
+        }
+      }
+    },
+    "IPIntelligenceResponse": {
+      "description": "IP address intelligence result",
+      "type": "object",
+      "properties": {
+        "IsBot": {
+          "description": "True if the IP address is a known bot, otherwise false",
+          "type": "boolean"
+        },
+        "IsTorNode": {
+          "description": "True if the IP address is a known Tor exit node, otherwise false",
+          "type": "boolean"
+        },
+        "IsThreat": {
+          "description": "True if the IP address is a known threat IP, otherwise false",
+          "type": "boolean"
+        },
+        "IsEU": {
+          "description": "True if the IP address is in the European Union, otherwise false",
+          "type": "boolean"
+        },
+        "Location": {
+          "$ref": "#/definitions/GeolocateResponse",
+          "description": "Returns the location of the IP address"
+        },
+        "CurrencyCode": {
+          "description": "ISO 4217 currency code for the IP address location",
+          "type": "string"
+        },
+        "CurrencyName": {
+          "description": "Name of the currency in English",
+          "type": "string"
+        },
+        "RegionArea": {
+          "description": "Region (continent) in which the country is located; possible values are None, Europe, Americas, Asia, Africa, Oceania",
+          "type": "string"
+        },
+        "SubregionArea": {
+          "description": "Subregion in which the country is located; possible values are None, NorthernEurope, WesternEurope, SouthernEurope, EasternEurope, CentralAmerica, NorthernAmerica, SouthAmerica, EasternAfrica, MiddleAfrica, NorthernAfrica , SouthernAfrica , WesternAfrica , CentralAsia , EasternAsia , SouthernAsia , SouthEasternAsia , WesternAsia , Southern , Middle , AustraliaandNewZealand , Melanesia , Polynesia , Micronesia , Caribbean,",
+          "type": "string"
+        }
+      }
+    },
+    "GeolocateResponse": {
+      "description": "Geolocation result of performing an IP address geolocation operation.  This product includes GeoLite2 data created by MaxMind, available from www.maxmind.com.",
+      "type": "object",
+      "properties": {
+        "CountryCode": {
+          "description": "Two-letter country code of IP address",
+          "type": "string"
+        },
+        "CountryName": {
+          "description": "Country name of IP address",
+          "type": "string"
+        },
+        "City": {
+          "description": "City of IP address",
+          "type": "string"
+        },
+        "RegionCode": {
+          "description": "State/region code of IP address",
+          "type": "string"
+        },
+        "RegionName": {
+          "description": "State/region of IP address",
+          "type": "string"
+        },
+        "ZipCode": {
+          "description": "Zip or postal code of IP address",
+          "type": "string"
+        },
+        "TimezoneStandardName": {
+          "description": "Timezone of IP address",
+          "type": "string"
+        },
+        "Latitude": {
+          "format": "double",
+          "description": "Latitude of IP address",
+          "type": "number"
+        },
+        "Longitude": {
+          "format": "double",
+          "description": "Longitude of IP address",
+          "type": "number"
+        }
+      }
+    },
+    "GeolocateStreetAddressResponse": {
+      "description": "Geolocation street address result",
+      "type": "object",
+      "properties": {
+        "CountryCode": {
+          "description": "Two-letter country code of IP address",
+          "type": "string"
+        },
+        "CountryName": {
+          "description": "Country name of IP address",
+          "type": "string"
+        },
+        "StreetAddress": {
+          "description": "Street address of IP address",
+          "type": "string"
+        },
+        "City": {
+          "description": "City of IP address",
+          "type": "string"
+        },
+        "RegionName": {
+          "description": "State/region of IP address",
+          "type": "string"
+        },
+        "ZipCode": {
+          "description": "Zip or postal code of IP address",
+          "type": "string"
+        }
+      }
+    },
+    "IPThreatResponse": {
+      "description": "Result of performing a IP threat check on an IP address",
+      "type": "object",
+      "properties": {
+        "IsThreat": {
+          "description": "True if the input IP address is a threat, false otherwise",
+          "type": "boolean"
+        },
+        "ThreatType": {
+          "description": "Specifies the type of IP threat; possible values include Blocklist, Botnet, WebBot",
+          "type": "string"
+        }
+      }
+    },
+    "TorNodeResponse": {
+      "description": "Result of performing a Tor node check on an IP address",
+      "type": "object",
+      "properties": {
+        "IsTorNode": {
+          "description": "True if the input IP address is a Tor exit node, false otherwise",
+          "type": "boolean"
+        }
+      }
+    },
+    "BotCheckResponse": {
+      "description": "Result of performing a Bot check on an IP address",
+      "type": "object",
+      "properties": {
+        "IsBot": {
+          "description": "True if the input IP address is a Bot or Robot, false otherwise",
+          "type": "boolean"
+        }
+      }
+    },
+    "IPReverseDNSLookupResponse": {
+      "description": "Result of performing a Reverse Domain (DNS) lookup on an IP address",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if a domain was found, false otherwise",
+          "type": "boolean"
+        },
+        "HostName": {
+          "description": "Host name (fully-qualified) associated with the IP address, if any",
+          "type": "string"
+        }
+      }
+    },
+    "LeadEnrichmentRequest": {
+      "description": "Input lead contact; fill in known fields to extend them with matched field values",
+      "type": "object",
+      "properties": {
+        "ContactBusinessEmail": {
+          "description": "The person's business email address for the lead",
+          "type": "string"
+        },
+        "ContactFirstName": {
+          "description": "The person's first name for the lead",
+          "type": "string"
+        },
+        "ContactLastName": {
+          "description": "The person's last name for the lead",
+          "type": "string"
+        },
+        "CompanyName": {
+          "description": "Name of the company for the lead",
+          "type": "string"
+        },
+        "CompanyDomainName": {
+          "description": "Domain name / website for the lead",
+          "type": "string"
+        },
+        "CompanyHouseNumber": {
+          "description": "House number of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyStreet": {
+          "description": "Street name of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyCity": {
+          "description": "City of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyStateOrProvince": {
+          "description": "State or Province of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyPostalCode": {
+          "description": "Postal Code of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyCountry": {
+          "description": "Country of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyCountryCode": {
+          "description": "Country Code (2-letter ISO 3166-1) of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyTelephone": {
+          "description": "Telephone of the company office for the lead",
+          "type": "string"
+        },
+        "CompanyVATNumber": {
+          "description": "VAT number of the company for the lead",
+          "type": "string"
+        }
+      }
+    },
+    "LeadEnrichmentResponse": {
+      "description": "Result of the lead enrichment process",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if the operation was successful, false otherwise",
+          "type": "boolean"
+        },
+        "LeadType": {
+          "description": "The type of the lead; possible types are Junk (a single individual using a disposable/throwaway email address); Individual (a single individual, typically a consumer, not purchasing on behalf of a business); SmallBusiness (a small business, typically with fewer than 100 employees); MediumBusiness (a medium business, larger than 100 employees but fewer than 1000 employees); Enterprise (a large business with greater than 1000 employees); Business (a business customer of unknown size)",
+          "type": "string"
+        },
+        "ContactBusinessEmail": {
+          "description": "The person's business email address for the lead",
+          "type": "string"
+        },
+        "ContactFirstName": {
+          "description": "The person's first name for the lead",
+          "type": "string"
+        },
+        "ContactLastName": {
+          "description": "The person's last name for the lead",
+          "type": "string"
+        },
+        "ContactGender": {
+          "description": "Gender for contact name; possible values are Male, Female, and Neutral (can be applied to Male or Female).  Requires ContactFirstName.",
+          "type": "string"
+        },
+        "CompanyName": {
+          "description": "Name of the company for the lead",
+          "type": "string"
+        },
+        "CompanyDomainName": {
+          "description": "Domain name / website for the lead",
+          "type": "string"
+        },
+        "CompanyHouseNumber": {
+          "description": "House number of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyStreet": {
+          "description": "Street name of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyCity": {
+          "description": "City of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyStateOrProvince": {
+          "description": "State or Province of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyPostalCode": {
+          "description": "Postal Code of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyCountry": {
+          "description": "Country Name of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyCountryCode": {
+          "description": "Country Code (2-letter ISO 3166-1) of the address of the company for the lead",
+          "type": "string"
+        },
+        "CompanyTelephone": {
+          "description": "Telephone of the company office for the lead",
+          "type": "string"
+        },
+        "CompanyVATNumber": {
+          "description": "VAT number of the company for the lead",
+          "type": "string"
+        },
+        "EmployeeCount": {
+          "format": "int32",
+          "description": "Count of employees at the company (estimated), if available",
+          "type": "integer"
+        }
+      }
+    },
+    "EmailLead": {
+      "type": "object",
+      "properties": {
+        "EmailAddress": {
+          "type": "string"
+        }
+      }
+    },
+    "FullNameValidationRequest": {
+      "description": "Request to validate a full name string",
+      "type": "object",
+      "properties": {
+        "FullNameString": {
+          "description": "Full name to process as a free-form string; supports many components such as First Name, Middle Name, Last Name, Title, Nickname, Suffix, and Display Name",
+          "type": "string"
+        }
+      }
+    },
+    "FullNameValidationResponse": {
+      "description": "Result of a full name validation operation",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if the validation operation was successful, false otherwise",
+          "type": "boolean"
+        },
+        "ValidationResult_FirstName": {
+          "description": "Possible values are: ValidFirstName, ValidUnknownFirstName, InvalidSpamInput, InvalidCharacters, InvalidEmpty",
+          "type": "string"
+        },
+        "ValidationResult_LastName": {
+          "description": "Possible values are: ValidLastName, ValidUnknownLastName, InvalidSpamInput, InvalidCharacters, InvalidEmpty",
+          "type": "string"
+        },
+        "Title": {
+          "description": "The person's title (if supplied), e.g. \"Mr.\" or \"Ms.\"",
+          "type": "string"
+        },
+        "FirstName": {
+          "description": "The first name (given name)",
+          "type": "string"
+        },
+        "MiddleName": {
+          "description": "The middle name(s); if there are multiple names they will be separated by spaces",
+          "type": "string"
+        },
+        "LastName": {
+          "description": "The last name (surname)",
+          "type": "string"
+        },
+        "NickName": {
+          "description": "Nickname (if supplied)",
+          "type": "string"
+        },
+        "Suffix": {
+          "description": "Suffix to the name, e.g. \"Jr.\" or \"Sr.\"",
+          "type": "string"
+        },
+        "DisplayName": {
+          "description": "The full display name of the name",
+          "type": "string"
+        }
+      }
+    },
+    "FirstNameValidationRequest": {
+      "description": "Request to validate a first name",
+      "type": "object",
+      "properties": {
+        "FirstName": {
+          "description": "First name to process",
+          "type": "string"
+        }
+      }
+    },
+    "FirstNameValidationResponse": {
+      "description": "Result of a first name validation operation",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if the validation operation was successful, false otherwise",
+          "type": "boolean"
+        },
+        "ValidationResult": {
+          "description": "Possible values are: ValidFirstName, ValidUnknownFirstName, InvalidSpamInput, InvalidCharacters, InvalidEmpty",
+          "type": "string"
+        }
+      }
+    },
+    "LastNameValidationRequest": {
+      "description": "Request to validate a last name",
+      "type": "object",
+      "properties": {
+        "LastName": {
+          "description": "Last name to process",
+          "type": "string"
+        }
+      }
+    },
+    "LastNameValidationResponse": {
+      "description": "Result of a last name validation operation",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if the validation operation was successful, false otherwise",
+          "type": "boolean"
+        },
+        "ValidationResult": {
+          "description": "Possible values are: ValidLastName, ValidUnknownLastName, InvalidSpamInput, InvalidCharacters, InvalidEmpty",
+          "type": "string"
+        }
+      }
+    },
+    "GetGenderRequest": {
+      "description": "Request to get the gender from a first name",
+      "type": "object",
+      "properties": {
+        "FirstName": {
+          "description": "Input first name (given name) to get the gender of",
+          "type": "string"
+        },
+        "CountryCode": {
+          "description": "Optional; the country for this name, possible values are \"US\", \"LY\", \"NI\", \"TT\", \"MK\", \"KZ\", \"BO\", \"UG\", \"TZ\", \"CL\", \"SI\", \"MA\", \"RW\", \"VN\", \"AW\", \"CY\", \"BH\", \"SG\", \"ZA\", \"MU\", \"BR\", \"TN\", \"KH\", \"US\", \"TH\", \"TW\", \"UY\", \"DO\", \"CO\", \"UA\", \"QA\", \"BY\", \"SN\", \"SD\", \"FJ\", \"LB\", \"BE\", \"ML\", \"LV\", \"FR\", \"TM\", \"NG\", \"EC\", \"NO\", \"SL\", \"CR\", \"PA\", \"GE\", \"CH\", \"KR\", \"RS\", \"ZM\", \"FI\", \"BF\", \"MC\", \"AU\", \"GA\", \"LS\", \"RU\", \"IN\", \"SE\", \"LK\", \"BZ\", \"MX\", \"GH\", \"AF\", \"TJ\", \"BN\", \"DZ\", \"CM\", \"GR\", \"MD\", \"HN\", \"AT\", \"NZ\", \"SV\", \"GW\", \"NA\", \"AR\", \"MZ\", \"PK\", \"MN\", \"IQ\", \"BW\", \"VE\", \"PT\", \"BS\", \"AL\", \"TG\", \"ID\", \"ET\", \"CF\", \"JP\", \"BB\", \"PH\", \"CU\", \"BD\", \"AO\", \"SM\", \"LC\", \"ME\", \"RO\",  DANIL\"O\"\", \"ES\", \"EE\", \"IL\", \"ZW\", \"SY\", \"MW\", \"LU\", \"IR\", \"SC\", \"NL\", \"JO\", \"AM\", \"DE\", \"GL\", \"OM\", \"DK\", \"HR\", \"LI\", \"TD\", \"KM\", \"BA\", \"GM\", \"GD\", \"CA\", \"CZ\", \"MR\", \"ST\", \"IS\", \"LR\", \"IE\", \"VC\", \"AE\", \"KG\", \"DJ\", \"TR\", \"KE\", \"NE\", \"UZ\", \"CN\", \"GQ\", \"SK\", \"BJ\", \"MG\", \"BT\", \"EG\", \"PL\", \"IT\", \"SA\", \"MY\", \"CI\", \"AG\", \"AD\", \"KS\", \"HU\", \"CG\", \"KP\", \"DM\", \"GN\", \"GT\", \"NP\", \"JM\", \"LA\", \"GB\", \"BG\", \"HT\", \"PE\", \"AZ\", \"LT\", \"SZ\", \"PY\", \"MT\", \"VA\"",
+          "type": "string"
+        }
+      }
+    },
+    "GetGenderResponse": {
+      "description": "Result of the GetGender operation",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if successful, false otherwise",
+          "type": "boolean"
+        },
+        "Gender": {
+          "description": "Gender for this name; possible values are Male, Female, and Neutral (can be applied to Male or Female)",
+          "type": "string"
+        }
+      }
+    },
+    "ValidateIdentifierRequest": {
+      "description": "Identifier validation request, including the input identifier as well as various identifier rules",
+      "type": "object",
+      "properties": {
+        "Input": {
+          "description": "Text string identifier input",
+          "type": "string"
+        },
+        "AllowWhitespace": {
+          "description": "True if whitespace is allowed in the identifier, false otherwise",
+          "type": "boolean"
+        },
+        "AllowHyphens": {
+          "description": "True if hyphens are allowd in the identifier, false otherwise",
+          "type": "boolean"
+        },
+        "AllowUnderscore": {
+          "description": "True if underscores are allowed in the identifier, false otherwise",
+          "type": "boolean"
+        },
+        "AllowNumbers": {
+          "description": "True if numbers are allowed in the identifier, false otherwise",
+          "type": "boolean"
+        },
+        "AllowPeriods": {
+          "description": "True if periods are allowed in the identifier, false otherwise",
+          "type": "boolean"
+        },
+        "MaxLength": {
+          "format": "int32",
+          "description": "Optional; maximum length, if any, of the identifier",
+          "type": "integer"
+        },
+        "MinLength": {
+          "format": "int32",
+          "description": "Optional; minimum length, if any, of the identifier",
+          "type": "integer"
+        }
+      }
+    },
+    "ValidateIdentifierResponse": {
+      "description": "Result of performing an identifier validation operation",
+      "type": "object",
+      "properties": {
+        "ValidIdentifier": {
+          "description": "True if the input identifier is valid, false otherwise",
+          "type": "boolean"
+        },
+        "Error": {
+          "description": "Resulting error from the identifier validation; possible errors are: \"InputIsEmpty\", \"ContainsWhitespace\", \"ContainsNumbers\", \"ContainsHyphen\", \"ContainsUnderscore\", \"ContainsPeriod\", \"TooShort\", \"TooLong\", \"ContainsSpecialCharacters\"",
+          "type": "string"
+        }
+      }
+    },
+    "PhoneNumberValidateRequest": {
+      "description": "Request to validate a phone number",
+      "type": "object",
+      "properties": {
+        "PhoneNumber": {
+          "description": "Raw phone number string to parse as input for validation",
+          "type": "string"
+        },
+        "DefaultCountryCode": {
+          "description": "Optional, default country code.  If left blank, will default to \"US\".",
+          "type": "string"
+        }
+      }
+    },
+    "PhoneNumberValidationResponse": {
+      "description": "Result from validating a phone number",
+      "type": "object",
+      "properties": {
+        "IsValid": {
+          "description": "True if the phone number is valid, false otherwise",
+          "type": "boolean"
+        },
+        "Successful": {
+          "description": "True if the operation was successful, false if there was an error during validation.  See IsValid for validation result.",
+          "type": "boolean"
+        },
+        "PhoneNumberType": {
+          "description": "Type of phone number; possible values are: FixedLine, Mobile, FixedLineOrMobile, TollFree, PremiumRate, \r\nSharedCost, Voip, PersonalNumber, Pager, Uan, Voicemail, Unknown",
+          "type": "string"
+        },
+        "E164Format": {
+          "description": "E.164 format of the phone number",
+          "type": "string"
+        },
+        "InternationalFormat": {
+          "description": "Internaltional format of the phone number",
+          "type": "string"
+        },
+        "NationalFormat": {
+          "description": "National format of the phone number",
+          "type": "string"
+        },
+        "CountryCode": {
+          "description": "Two digit country code of the phone number",
+          "type": "string"
+        },
+        "CountryName": {
+          "description": "User-friendly long name of the country for the phone number",
+          "type": "string"
+        }
+      }
+    },
+    "SqlInjectionDetectionResult": {
+      "description": "Result of performing an SQL Injection protection operation",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if the operation was successful, false otherwise",
+          "type": "boolean"
+        },
+        "ContainedSqlInjectionAttack": {
+          "description": "True if the input contained SQL Injection attacks, false otherwise",
+          "type": "boolean"
+        },
+        "OriginalInput": {
+          "description": "Original input string",
+          "type": "string"
+        }
+      }
+    },
+    "SqlInjectionCheckBatchRequest": {
+      "description": "Input to a batch SQL Injection detection operation",
+      "type": "object",
+      "properties": {
+        "RequestItems": {
+          "description": "Multiple items to detect for SQL Injection",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SqlInjectionCheckRequestItem"
+          }
+        },
+        "DetectionLevel": {
+          "description": "Set to Normal to target a high-security SQL Injection detection level with a very low false positive rate; select High to target a very-high security SQL Injection detection level with higher false positives.  Default is Normal (recommended).",
+          "type": "string"
+        }
+      }
+    },
+    "SqlInjectionCheckRequestItem": {
+      "description": "Individual item to protect for SQL Injection",
+      "type": "object",
+      "properties": {
+        "InputText": {
+          "description": "Individual input text item to check for SQL Injection",
+          "type": "string"
+        }
+      }
+    },
+    "SqlInjectionCheckBatchResponse": {
+      "description": "Result of performing a batch XSS protection operation",
+      "type": "object",
+      "properties": {
+        "ResultItems": {
+          "description": "Results from performing a batch SQL Injection detection operation; order is preserved from input data",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SqlInjectionDetectionResult"
+          }
+        }
+      }
+    },
+    "XssProtectionResult": {
+      "description": "Result of performing an XSS protection operation",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if the operation was successful, false otherwise",
+          "type": "boolean"
+        },
+        "ContainedXss": {
+          "description": "True if the input contained XSS scripting, false otherwise",
+          "type": "boolean"
+        },
+        "OriginalInput": {
+          "description": "Original input string",
+          "type": "string"
+        },
+        "NormalizedResult": {
+          "description": "Normalized string result, with XSS removed",
+          "type": "string"
+        }
+      }
+    },
+    "XssProtectionBatchRequest": {
+      "description": "Input to a batch XSS protection operation",
+      "type": "object",
+      "properties": {
+        "RequestItems": {
+          "description": "Multiple items to protect for XSS",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/XssProtectionRequestItem"
+          }
+        }
+      }
+    },
+    "XssProtectionRequestItem": {
+      "description": "Individual item to protect for XSS",
+      "type": "object",
+      "properties": {
+        "InputText": {
+          "description": "Individual input text item to protect from XSS",
+          "type": "string"
+        }
+      }
+    },
+    "XssProtectionBatchResponse": {
+      "description": "Result of performing a batch XSS protection operation",
+      "type": "object",
+      "properties": {
+        "ResultItems": {
+          "description": "Results from performing a batch XSS protection operation",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/XssProtectionResult"
+          }
+        }
+      }
+    },
+    "HtmlSsrfDetectionResult": {
+      "description": "Result of performing an XXE threat detection operation",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if the operation was successful, false otherwise",
+          "type": "boolean"
+        },
+        "ContainedThreats": {
+          "description": "True if the input contained SSRF threats, false otherwise",
+          "type": "boolean"
+        }
+      }
+    },
+    "XxeDetectionResult": {
+      "description": "Result of performing an XXE threat detection operation",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if the operation was successful, false otherwise",
+          "type": "boolean"
+        },
+        "ContainedXxe": {
+          "description": "True if the input contained XXE threats, false otherwise",
+          "type": "boolean"
+        }
+      }
+    },
+    "XxeDetectionBatchRequest": {
+      "description": "Input to a batch XXE detection operation",
+      "type": "object",
+      "properties": {
+        "RequestItems": {
+          "description": "Multiple items to protect for XXE",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/XxeDetectionRequestItem"
+          }
+        }
+      }
+    },
+    "XxeDetectionRequestItem": {
+      "description": "Individual item to detect for XXE",
+      "type": "object",
+      "properties": {
+        "InputText": {
+          "description": "Individual input text item to protect from XXE",
+          "type": "string"
+        },
+        "AllowInternetUrls": {
+          "description": "Optional: Set to true to allow Internet-based dependency URLs for DTDs and other XML External Entitites, set to false to block.  Default is false.",
+          "type": "boolean"
+        },
+        "KnownSafeUrls": {
+          "description": "Optional: Comma separated list of fully-qualified URLs that will automatically be considered safe.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "KnownUnsafeUrls": {
+          "description": "Optional: Comma separated list of fully-qualified URLs that will automatically be considered unsafe.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "XxeDetectionBatchResponse": {
+      "description": "Result of performing a batch XXE detection operation",
+      "type": "object",
+      "properties": {
+        "ResultItems": {
+          "description": "Results from performing a batch XSS protection operation",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/XxeDetectionResult"
+          }
+        }
+      }
+    },
+    "UserAgentValidateRequest": {
+      "description": "User-Agent parse and validation request",
+      "type": "object",
+      "properties": {
+        "UserAgentString": {
+          "description": "The user agent string you wish to parse and validate",
+          "type": "string"
+        }
+      }
+    },
+    "UserAgentValidateResponse": {
+      "description": "The result of a User-Agent validation request",
+      "type": "object",
+      "properties": {
+        "Successful": {
+          "description": "True if the operation was successful, false otherwise",
+          "type": "boolean"
+        },
+        "IsBot": {
+          "description": "True if the request is a known robot, false otherwise",
+          "type": "boolean"
+        },
+        "BotName": {
+          "description": "Optional; name of the robot if the request was from a known robot, otherwise null",
+          "type": "string"
+        },
+        "BotURL": {
+          "description": "Optional; if available, the URL to the robot",
+          "type": "string"
+        },
+        "OperatingSystem": {
+          "description": "Operating System of the User-Agent (e.g. Windows)",
+          "type": "string"
+        },
+        "OperatingSystemCPUPlatform": {
+          "description": "The CPU platform of the User-Agent (e.g. x64)",
+          "type": "string"
+        },
+        "OperatingSystemVersion": {
+          "description": "The version of the operating system of the User-Agent (e.g. \"10\" for Windows 10)",
+          "type": "string"
+        },
+        "DeviceType": {
+          "description": "Device type of the User-Agent; possible values are \"DESKTOP\", \"SMARTPHONE\", \"TABLET\"",
+          "type": "string"
+        },
+        "DeviceBrandName": {
+          "description": "Brand name of the User-Agent",
+          "type": "string"
+        },
+        "DeviceModel": {
+          "description": "Model name or number of the User-Agent",
+          "type": "string"
+        },
+        "BrowserName": {
+          "description": "Name of the Browser",
+          "type": "string"
+        },
+        "BrowserVersion": {
+          "description": "Version of the Browser",
+          "type": "string"
+        },
+        "BrowserEngineName": {
+          "description": "Name of the Browser Engine",
+          "type": "string"
+        },
+        "BrowserEngineVersion": {
+          "description": "Version of the Browser Engine",
+          "type": "string"
+        }
+      }
+    },
+    "VatLookupRequest": {
+      "description": "Input to a VAT lookup request",
+      "type": "object",
+      "properties": {
+        "VatCode": {
+          "description": "VAT code to lookup; example \"CZ25123891\"",
+          "type": "string"
+        }
+      }
+    },
+    "VatLookupResponse": {
+      "type": "object",
+      "properties": {
+        "CountryCode": {
+          "description": "Two-letter country code",
+          "type": "string"
+        },
+        "VatNumber": {
+          "description": "VAT number",
+          "type": "string"
+        },
+        "IsValid": {
+          "description": "True if the VAT code is valid, false otherwise",
+          "type": "boolean"
+        },
+        "BusinessName": {
+          "description": "Name of the business",
+          "type": "string"
+        },
+        "BusinessAddress": {
+          "description": "Business address as a single string",
+          "type": "string"
+        },
+        "BusinessBuilding": {
+          "description": "For the business address, the name of the building, house or structure if applicable, such as \"Cloudmersive Building 2\".  This will often by null.",
+          "type": "string"
+        },
+        "BusinessStreetNumber": {
+          "description": "For the business address, the street number or house number of the address.  For example, in the address \"1600 Pennsylvania Avenue NW\" the street number would be \"1600\".  This value will typically be populated for most addresses.",
+          "type": "string"
+        },
+        "BusinessStreet": {
+          "description": "For the business address, the name of the street or road of the address.  For example, in the address \"1600 Pennsylvania Avenue NW\" the street number would be \"Pennsylvania Avenue NW\".",
+          "type": "string"
+        },
+        "BusinessCity": {
+          "description": "For the business address, the city of the address.",
+          "type": "string"
+        },
+        "BusinessStateOrProvince": {
+          "description": "For the business address, the state or province of the address.",
+          "type": "string"
+        },
+        "BusinessPostalCode": {
+          "description": "For the business address, the postal code or zip code of the address.",
+          "type": "string"
+        },
+        "BusinessCountry": {
+          "description": "For the business address, country of the address, if present in the address.  If not included in the address it will be null.",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Apikey": {
+      "type": "apiKey",
+      "description": "API Key Authentication",
+      "name": "Apikey",
+      "in": "header"
+    }
+  }
+}
