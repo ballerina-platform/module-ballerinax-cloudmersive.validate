@@ -36,6 +36,11 @@ These changes are done in order to improve the overall usability, and as workaro
 - **Updated**: The aligned spec's `Location` property carries `"description": "Returns the location of the IP address"` beside its `allOf`.
 - **Reason**: Without it the generated `location` field is undocumented and `bal build` warns.
 
+6. Remove a malformed entry from the `GetGenderRequest.CountryCode` description
+- **Original**: The list of possible values contained the malformed entry `DANIL"O""` between `"RO"` and `"ES"`.
+- **Updated**: The entry is removed from the description in the original spec and in the aligned spec.
+- **Reason**: It is not a country code (`"DO"` is already listed) and it rendered as broken documentation in the generated `types.bal`.
+
 ## OpenAPI cli command
 
 The following command was used to generate the Ballerina client from the OpenAPI specification. The command should be executed from the repository root directory.

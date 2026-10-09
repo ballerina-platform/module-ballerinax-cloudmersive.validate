@@ -25,6 +25,10 @@ public function main() returns error? {
     io:println("Display name: ", nameResult?.displayName);
     io:println("First name check: ", nameResult?.validationResultFirstName);
     io:println("Last name check: ", nameResult?.validationResultLastName);
+    string firstNameCheck = nameResult?.validationResultFirstName ?: "";
+    string lastNameCheck = nameResult?.validationResultLastName ?: "";
+    boolean nameValid = (nameResult?.successful ?: false) && firstNameCheck.startsWith("Valid")
+        && lastNameCheck.startsWith("Valid");
 
     // Step 3: Validate the phone number.
     validate:PhoneNumberValidationResponse phoneResult = check validateClient->validatePhoneNumber({
@@ -37,9 +41,9 @@ public function main() returns error? {
         io:println("International format: ", phoneResult?.internationalFormat);
     }
 
-    if emailValid && phoneValid {
+    if emailValid && nameValid && phoneValid {
         io:println("Sign-up details accepted.");
     } else {
-        io:println("Sign-up details rejected: please correct the email address or phone number.");
+        io:println("Sign-up details rejected: please correct the email address, name or phone number.");
     }
 }

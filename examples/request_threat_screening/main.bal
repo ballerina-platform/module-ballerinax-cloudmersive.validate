@@ -13,7 +13,7 @@ public function main() returns error? {
 
     // Step 1: Check whether the client IP address is a known threat. The API expects a JSON string, so values are quoted.
     validate:IPThreatResponse ipResult = check validateClient->checkIpThreat(string `"${clientIp}"`);
-    boolean ipThreat = ipResult?.isThreat ?: false;
+    boolean ipThreat = ipResult?.isThreat ?: true;
     io:println("IP threat: ", ipThreat);
 
     // Step 2: Geolocate the IP address to log where the request came from.
@@ -27,7 +27,7 @@ public function main() returns error? {
 
     // Step 4: Check the submitted text for SQL injection.
     validate:SqlInjectionDetectionResult sqlResult = check validateClient->checkSqlInjection(string `"${submittedText}"`);
-    boolean sqlInjection = sqlResult?.containedSqlInjectionAttack ?: false;
+    boolean sqlInjection = sqlResult?.containedSqlInjectionAttack ?: true;
     io:println("SQL injection detected: ", sqlInjection);
 
     if ipThreat || !cleanUrl || sqlInjection {
