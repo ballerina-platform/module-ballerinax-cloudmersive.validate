@@ -2,13 +2,13 @@
 
 The `ballerinax/cloudmersive.validate` connector provides practical examples illustrating usage in various scenarios.
 
-[//]: # (TODO: Add examples)
-1. 
-2. 
+1. [signup_data_validation](./signup_data_validation/signup_data_validation.md) - Validate the email address, full name and phone number from a sign-up form.
+2. [request_threat_screening](./request_threat_screening/request_threat_screening.md) - Screen a web request by checking the client IP, referring URL and submitted text for threats.
 
 ## Prerequisites
 
-[//]: # (TODO: Add prerequisites)
+1. A Cloudmersive API key, supplied through each example's `Config.toml`.
+2. Ballerina Swan Lake 2201.12.0 or later.
 
 ## Running an example
 
